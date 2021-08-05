@@ -1,0 +1,25 @@
+## COLORS ##
+
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+
+CYAN = (0, 255, 255)
+YELLOW = (255, 255, 0)
+MAGENTA = (255, 0, 255)
+
+PINK = (255, 192, 203)
+PURPLE = (128, 0, 128)
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREY = (128, 128, 128)
+
+RAINBOW = WHITE
+GLITTER = WHITE
+
+## GENOMES ##
+
+GENE_COUNT = 5
+GENE_NAMES = ["RED", "GREEN", "BLUE", "WHITE", "EXOTIC"]
+GENE_NAMES_SHORT = ["R", "G", "B", "W", "X"]
