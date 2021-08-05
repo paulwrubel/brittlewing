@@ -73,6 +73,7 @@ def try_breed_flowers(config):
 
 
 def get_first_neighbor(config, location) -> tuple(int, int):
+    neighbor_locations = []
 
 
 def draw_grid(config: Configuration):
