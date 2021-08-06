@@ -33,6 +33,7 @@ VARIANT_MAP = {
 
 
 class Flower:
-    def __init__(self, species: str, genome_string: str):
+    def __init__(self, species: str, genome_string: str, breed_chance: float):
         self.species = species
-        self.genome = Genome(genome_string)
+        self.genome = genome_string
+        self.breed_chance = breed_chance

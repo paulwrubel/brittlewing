@@ -1,9 +1,12 @@
+from __future__ import annotations
+from hashlib import new
 from constants import *
+import random
 
 
 class Genome:
-    def __init__(self, string: str):
-        self.genome = self.__parse_genome_string(string)
+    def __init__(self, raw_g: str):
+        self.g = self.__parse_genome_string(raw_g)
 
     def __parse_genome_string(self, string: str) -> list[int]:
         """
@@ -56,18 +59,44 @@ class Genome:
                 genome_string = genome_string[2:]
                 yield gene
 
+    def cross(self, b: Genome) -> Genome:
+        new_genes = []
+        for a_gene, b_gene in zip(self.g, b.g):
+            if a_gene == 0:
+                if b_gene == 0:
+                    new_genes.append(0)
+                elif b_gene == 1:
+                    new_genes.append(random.choice([0, 1]))
+                else:  # b_gene == 2
+                    new_genes.append(1)
+            elif a_gene == 1:
+                if b_gene == 0:
+                    new_genes.append(random.choice([0, 1]))
+                elif b_gene == 1:
+                    new_genes.append(random.choice([0, 1, 1, 2]))
+                else:  # b_gene == 2
+                    new_genes.append(random.choice([1, 2]))
+            else:  # a_gene == 2
+                if b_gene == 0:
+                    new_genes.append(1)
+                elif b_gene == 1:
+                    new_genes.append(random.choice([1, 2]))
+                else:  # b_gene == 2
+                    new_genes.append(2)
+        return Genome(''.join(map(str, new_genes)))
+
     def genes(self) -> list[int]:
-        return self.genome
+        return self.g
 
     def short(self) -> str:
         short_string = ""
-        for gene in self.genome:
+        for gene in self.g:
             short_string += str(gene)
         return short_string
 
     def long(self) -> str:
         long_string = ""
-        for i, gene in enumerate(self.genome):
+        for i, gene in enumerate(self.g):
             if gene == 0:
                 long_string += GENE_NAMES_SHORT[i].lower() + \
                     GENE_NAMES_SHORT[i].lower()
